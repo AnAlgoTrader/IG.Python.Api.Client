@@ -1,3 +1,4 @@
+import os
 import datetime
 import inspect
 import json
@@ -18,7 +19,10 @@ class TestIgClient(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(TestIgClient, self).__init__(*args, **kwargs)
-        self.client = IgClient()
+        config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.personal.json')
+        with open(config_path) as json_file:
+            data = json.load(json_file)
+        self.client = IgClient(data)
         self.assertEqual(self.client.environment, "demo", "Client not connected to the demo environment")
 
     def test_token(self):

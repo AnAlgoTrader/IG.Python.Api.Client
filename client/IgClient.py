@@ -1,5 +1,3 @@
-import json
-import os
 import requests
 import datetime
 import json
@@ -8,10 +6,8 @@ from client.model.Resolution import Resolution
 
 
 class IgClient:
-    def __init__(self):
-        config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.personal.json')
-        with open(config_path) as json_file:
-            data = json.load(json_file)
+    def __init__(self, data):
+
         self.__set_uris__()
         self.__set_base_uri__(data)
         self.__auth__(data)

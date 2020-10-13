@@ -16,15 +16,26 @@ def print_test_result(caller, result):
 class TestIgClientWorkingOrders(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestIgClientWorkingOrders, self).__init__(*args, **kwargs)
-        config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.personal.json')
+        config_path = os.path.join(
+            os.path.dirname(
+                os.path.abspath(__file__)),
+            'auth.personal.json')
         with open(config_path) as json_file:
             data = json.load(json_file)
         self.client = IgClient(data)
-        self.assertEqual(self.client.environment, "demo", "Client not connected to the demo environment")
+        self.assertEqual(
+            self.client.environment,
+            "demo",
+            "Client not connected to the demo environment")
 
     def test_token(self):
-        self.assertNotEqual(self.client.token, "not authenticated", "Authentication error")
-        print_test_result(inspect.stack()[0][0].f_code.co_name, self.client.token)
+        self.assertNotEqual(
+            self.client.token,
+            "not authenticated",
+            "Authentication error")
+        print_test_result(
+            inspect.stack()[0][0].f_code.co_name,
+            self.client.token)
 
     def test_create_order(self):
         create_working_order_request = CreateWorkingOrderRequest()
@@ -41,7 +52,9 @@ class TestIgClientWorkingOrders(unittest.TestCase):
         self.assertNotEqual(bool(data), False, "No response retrieved")
         deal_reference = data['dealReference']
         data = self.client.get_trade_confirm(deal_reference)
-        print_test_result(inspect.stack()[0][0].f_code.co_name, data['dealStatus'])
+        print_test_result(
+            inspect.stack()[0][0].f_code.co_name,
+            data['dealStatus'])
 
     def test_create_order_limit_stop(self):
         create_working_order_request = CreateWorkingOrderRequest()
@@ -60,7 +73,9 @@ class TestIgClientWorkingOrders(unittest.TestCase):
         self.assertNotEqual(bool(data), False, "No response retrieved")
         deal_reference = data['dealReference']
         data = self.client.get_trade_confirm(deal_reference)
-        print_test_result(inspect.stack()[0][0].f_code.co_name, data['dealStatus'])
+        print_test_result(
+            inspect.stack()[0][0].f_code.co_name,
+            data['dealStatus'])
 
 
 if __name__ == '__main__':

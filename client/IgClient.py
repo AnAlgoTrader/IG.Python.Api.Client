@@ -18,7 +18,11 @@ class IgClient:
         key = data['ig.key']
         headers = {"X-IG-API-KEY": key, "VERSION": "2"}
         data = {"identifier": username, "password": password}
-        response = requests.post(self.base_uri + self.SESSION_URI, json=data, headers=headers)
+        response = requests.post(
+            self.base_uri +
+            self.SESSION_URI,
+            json=data,
+            headers=headers)
         if response.status_code != 200:
             self.token = 'not authenticated'
         else:
@@ -47,7 +51,11 @@ class IgClient:
         self.TRADE_CONFIRM_URI = "/gateway/deal/confirms"
 
     def __get_response__(self, url, version):
-        headers = {"X-IG-API-KEY": self.api_key, "VERSION": version, "CST": self.cst, "X-SECURITY-TOKEN": self.token}
+        headers = {
+            "X-IG-API-KEY": self.api_key,
+            "VERSION": version,
+            "CST": self.cst,
+            "X-SECURITY-TOKEN": self.token}
         response = requests.get(self.base_uri + url, headers=headers)
         if response.status_code != 200:
             raise Exception("invalid response calling " + self.base_uri + url)
@@ -68,7 +76,10 @@ class IgClient:
                        "X-SECURITY-TOKEN": self.token,
                        "_method": method}
         json_content = json.dumps(request.__dict__)
-        response = requests.post(self.base_uri + url, headers=headers, data=json_content)
+        response = requests.post(
+            self.base_uri + url,
+            headers=headers,
+            data=json_content)
         if response.status_code != 200:
             raise Exception("invalid response calling " + self.base_uri + url)
         else:
@@ -88,14 +99,24 @@ class IgClient:
     def get_prices(self, epic, resolution: Resolution, from_date: datetime, to_date: datetime):
         from_date_formatted = from_date.strftime("%Y-%m-%d") + 'T00%3A00%3A00'
         to_date_formatted = to_date.strftime("%Y-%m-%d") + 'T00%3A00%3A00'
-        url = [self.PRICES_URI, '/', epic, '?resolution=', resolution.name, '&from=', from_date_formatted, '&to=', to_date_formatted]
+        url = [
+            self.PRICES_URI,
+            '/',
+            epic,
+            '?resolution=',
+            resolution.name,
+            '&from=',
+            from_date_formatted,
+            '&to=',
+            to_date_formatted]
         return self.__get_response__(''.join(url), "3")
 
     def get_positions(self):
         return self.__get_response__(self.POSITIONS_URI, "2")
 
     def create_working_order(self, request):
-        return self.__post_response__(self.WORKING_ORDERS_URI, request, None, "2")
+        return self.__post_response__(
+            self.WORKING_ORDERS_URI, request, None, "2")
 
     def get_trade_confirm(self, deal_reference):
         url = self.TRADE_CONFIRM_URI + "/" + deal_reference

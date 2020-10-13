@@ -355,8 +355,10 @@ MigrationBackup/
 #Visual Studio code folder
 .vscode
 
-#Pycharm folder
+#Pycharm folders
 .idea
+/Scripts/
+/Lib/
 
 #specific files
 /IG.Java.Api.Client/target/

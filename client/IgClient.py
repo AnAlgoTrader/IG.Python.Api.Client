@@ -7,7 +7,6 @@ from client.model.Resolution import Resolution
 
 class IgClient:
     def __init__(self, data):
-
         self.__set_uris__()
         self.__set_base_uri__(data)
         self.__auth__(data)

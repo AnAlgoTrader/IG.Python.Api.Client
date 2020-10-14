@@ -18,8 +18,8 @@ class TestIgClientWorkingOrders(unittest.TestCase):
         super(TestIgClientWorkingOrders, self).__init__(*args, **kwargs)
         config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.personal.json')
         with open(config_path) as json_file:
-            data = json.load(json_file)
-        self.client = IgClient(data)
+            creds = json.load(json_file)
+        self.client = IgClient(creds)
         self.assertEqual(self.client.environment, "demo", "Client not connected to the demo environment")
 
     def test_token(self):

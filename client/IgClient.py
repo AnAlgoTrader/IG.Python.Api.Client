@@ -6,15 +6,15 @@ from client.model.Resolution import Resolution
 
 
 class IgClient:
-    def __init__(self, data):
+    def __init__(self, creds):
         self.__set_uris__()
-        self.__set_base_uri__(data)
-        self.__auth__(data)
+        self.__set_base_uri__(creds)
+        self.__auth__(creds)
 
-    def __auth__(self, data):
-        username = data['ig.username']
-        password = data['ig.password']
-        key = data['ig.key']
+    def __auth__(self, creds):
+        username = creds['ig.username']
+        password = creds['ig.password']
+        key = creds['ig.key']
         headers = {"X-IG-API-KEY": key, "VERSION": "2"}
         data = {"identifier": username, "password": password}
         response = requests.post(self.base_uri + self.SESSION_URI, json=data, headers=headers)

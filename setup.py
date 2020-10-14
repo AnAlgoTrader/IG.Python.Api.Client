@@ -6,4 +6,4 @@ setup(name='IG.Python.Api.Client',
       author='One Angry Trader',
       author_email='one.angry.trader@gmail.com',
       url='https://github.com/oneangrytrader/IG.Python.Api.Client',
-     )
+      )

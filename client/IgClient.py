@@ -46,7 +46,8 @@ class IgClient:
         self.TRADE_CONFIRM_URI = "/gateway/deal/confirms"
 
     def __get_response__(self, url, version):
-        headers = {"X-IG-API-KEY": self.api_key, "VERSION": version, "CST": self.cst, "X-SECURITY-TOKEN": self.token}
+        headers = {"X-IG-API-KEY": self.api_key, "VERSION": version,
+                   "CST": self.cst, "X-SECURITY-TOKEN": self.token}
         response = requests.get(self.base_uri + url, headers=headers)
         if response.status_code != 200:
             raise Exception("invalid response calling " + self.base_uri + url)
@@ -87,7 +88,8 @@ class IgClient:
     def get_prices(self, epic, resolution: Resolution, from_date: datetime, to_date: datetime):
         from_date_formatted = from_date.strftime("%Y-%m-%d") + 'T00%3A00%3A00'
         to_date_formatted = to_date.strftime("%Y-%m-%d") + 'T00%3A00%3A00'
-        url = [self.PRICES_URI, '/', epic, '?resolution=', resolution.name, '&from=', from_date_formatted, '&to=', to_date_formatted]
+        url = [self.PRICES_URI, '/', epic, '?resolution=', resolution.name,
+               '&from=', from_date_formatted, '&to=', to_date_formatted]
         return self.__get_response__(''.join(url), "3")
 
     def get_positions(self):

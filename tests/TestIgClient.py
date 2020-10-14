@@ -48,7 +48,8 @@ class TestIgClient(unittest.TestCase):
                           json.dumps(data['activities'], indent=4, sort_keys=True))
 
     def test_prices(self):
-        data = self.client.get_prices('IX.D.FTSE.DAILY.IP', Resolution.DAY, datetime.datetime(2020, 7, 20), datetime.datetime(2020, 7, 21))
+        data = self.client.get_prices('IX.D.FTSE.DAILY.IP', Resolution.DAY,
+                                      datetime.datetime(2020, 7, 20), datetime.datetime(2020, 7, 21))
         self.assertNotEqual(bool(data), False, "No prices retrieved")
         print_test_result(inspect.stack()[0][0].f_code.co_name,
                           json.dumps(data['prices'], indent=4, sort_keys=True))

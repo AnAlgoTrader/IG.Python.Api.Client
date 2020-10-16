@@ -359,13 +359,3 @@ MigrationBackup/
 .idea
 /Scripts/
 /Lib/
-
-#specific files
-/IG.Java.Api.Client/target/
-/IG.Java.Api.Client/nbproject/
-/Saxo.Csharp.Api.Client/Saxo.Csharp.Api.Client.Playground/clientSettings.json
-IG.Python.Api.Client/client/auth.personal.json
-*.exe
-IG.Cpp.Api.Client/personalSettings.json
-/DeGiro.Csharp.Api.Client/DeGiro.Csharp.Api.Client/personalSettings.json
-/DeGiro.Csharp.Api.Client/DeGiro.Csharp.Api.Client.Test/personalSettings.json

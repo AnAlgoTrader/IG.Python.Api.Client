@@ -46,8 +46,10 @@ class IgClient:
         self.TRADE_CONFIRM_URI = "/gateway/deal/confirms"
 
     def __get_response__(self, url, version):
-        headers = {"X-IG-API-KEY": self.api_key, "VERSION": version,
-                   "CST": self.cst, "X-SECURITY-TOKEN": self.token}
+        headers = {"X-IG-API-KEY": self.api_key,
+                   "VERSION": version,
+                   "CST": self.cst,
+                   "X-SECURITY-TOKEN": self.token}
         response = requests.get(self.base_uri + url, headers=headers)
         if response.status_code != 200:
             raise Exception("invalid response calling " + self.base_uri + url)

@@ -3,6 +3,7 @@ import datetime
 import json
 
 from client.model.Resolution import Resolution
+from client.response.Accounts import accounts_from_dict
 
 
 class IgRestClient:
@@ -54,7 +55,7 @@ class IgRestClient:
         if response.status_code != 200:
             raise Exception("invalid response calling " + self.base_uri + url)
         else:
-            return json.loads(response.text)
+            return response.text
 
     def __post_response__(self, url, request, method, version):
         if method is None:
@@ -80,7 +81,8 @@ class IgRestClient:
         return self.__get_response__(self.POSITIONS_URI, "2")
 
     def get_accounts(self):
-        return self.__get_response__(self.ACCOUNTS_URI, "1")
+        response = self.__get_response__(self.ACCOUNTS_URI, "1")
+        return accounts_from_dict(json.loads(response))
 
     def get_transactions(self, from_date: datetime):
         url = [self.TRANSACTIONS_URI, '?from=', from_date.strftime("%Y-%m-%d")]

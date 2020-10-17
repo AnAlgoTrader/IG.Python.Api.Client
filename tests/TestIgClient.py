@@ -6,7 +6,7 @@ import unittest
 
 from client.IgRestClient import IgRestClient
 from client.model.Resolution import Resolution
-from client.model.CreateWorkingOrderRequest import CreateWorkingOrderRequest
+from client.request.CreateWorkingOrderRequest import CreateWorkingOrderRequest
 
 
 def print_test_result(caller, result):
@@ -30,11 +30,9 @@ class TestIgClient(unittest.TestCase):
         self.assertNotEqual(self.client.token, "not authenticated", "Authentication error")
         print_test_result(inspect.stack()[0][0].f_code.co_name, self.client.token)
 
-    def test_account(self):
-        data = self.client.get_accounts()
-        self.assertNotEqual(bool(data), False, "No account retrieved")
-        print_test_result(inspect.stack()[0][0].f_code.co_name,
-                          json.dumps(data['accounts'], indent=4, sort_keys=True))
+    def test_get_accounts(self):
+        accounts = self.client.get_accounts()
+        self.assertNotEqual(bool(accounts), False, "No account retrieved")
 
     def test_transactions(self):
         data = self.client.get_transactions(datetime.datetime(2020, 7, 1))

@@ -76,6 +76,9 @@ class IgRestClient:
         else:
             return json.loads(response.text)
 
+    def get_positions(self):
+        return self.__get_response__(self.POSITIONS_URI, "2")
+
     def get_accounts(self):
         return self.__get_response__(self.ACCOUNTS_URI, "1")
 
@@ -93,9 +96,6 @@ class IgRestClient:
         url = [self.PRICES_URI, '/', epic, '?resolution=', resolution.name,
                '&from=', from_date_formatted, '&to=', to_date_formatted]
         return self.__get_response__(''.join(url), "3")
-
-    def get_positions(self):
-        return self.__get_response__(self.POSITIONS_URI, "2")
 
     def create_working_order(self, request):
         return self.__post_response__(self.WORKING_ORDERS_URI, request, None, "2")

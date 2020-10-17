@@ -359,3 +359,4 @@ MigrationBackup/
 .idea
 /Scripts/
 /Lib/
+tests/auth.personal.json

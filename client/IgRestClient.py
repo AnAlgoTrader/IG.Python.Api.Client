@@ -5,7 +5,7 @@ import json
 from client.model.Resolution import Resolution
 
 
-class IgClient:
+class IgRestClient:
     def __init__(self, creds):
         self.__set_uris__()
         self.__set_base_uri__(creds)

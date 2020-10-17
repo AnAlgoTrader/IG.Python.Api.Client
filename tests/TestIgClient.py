@@ -4,7 +4,7 @@ import inspect
 import json
 import unittest
 
-from client.IgClient import IgClient
+from client.IgRestClient import IgRestClient
 from client.model.Resolution import Resolution
 from client.model.CreateWorkingOrderRequest import CreateWorkingOrderRequest
 
@@ -23,7 +23,7 @@ class TestIgClient(unittest.TestCase):
         config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.personal.json')
         with open(config_path) as json_file:
             creds = json.load(json_file)
-        self.client = IgClient(creds)
+        self.client = IgRestClient(creds)
         self.assertEqual(self.client.environment, "demo", "Client not connected to the demo environment")
 
     def test_token(self):

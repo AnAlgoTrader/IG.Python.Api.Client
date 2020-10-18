@@ -50,10 +50,10 @@ class TestIgClient(unittest.TestCase):
             pprint(vars(account))
 
     def test_transactions(self):
-        data = self.client.get_transactions(datetime.datetime(2020, 7, 1))
-        self.assertNotEqual(bool(data), False, "No transactions retrieved")
-        print_test_result(inspect.stack()[0][0].f_code.co_name,
-                          json.dumps(data['transactions'], indent=4, sort_keys=True))
+        response = self.client.get_transactions(datetime.datetime(2020, 10, 1))
+        print_test_header(inspect.stack()[0][0].f_code.co_name)
+        for transaction in response.transactions:
+            pprint(vars(transaction))
 
     def test_activities(self):
         data = self.client.get_activities(datetime.datetime(2020, 7, 1))

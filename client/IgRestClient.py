@@ -5,6 +5,7 @@ import json
 from client.model.Resolution import Resolution
 from client.response.Accounts import accounts_from_dict
 from client.response.Positions import positions_from_dict
+from client.response.Transactions import transactions_from_dict
 
 
 class IgRestClient:
@@ -88,7 +89,8 @@ class IgRestClient:
 
     def get_transactions(self, from_date: datetime):
         url = [self.TRANSACTIONS_URI, '?from=', from_date.strftime("%Y-%m-%d")]
-        return self.__get_response__(''.join(url), "2")
+        response = self.__get_response__(''.join(url), "2")
+        return transactions_from_dict(json.loads(response))
 
     def get_activities(self, from_date: datetime):
         url = [self.ACTIVITIES_URI, '?from=', from_date.strftime("%Y-%m-%d")]

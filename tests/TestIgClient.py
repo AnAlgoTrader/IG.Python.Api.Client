@@ -7,6 +7,7 @@ import unittest
 from client.IgRestClient import IgRestClient
 from client.model.Resolution import Resolution
 from client.request.CreateWorkingOrderRequest import CreateWorkingOrderRequest
+from pprint import pprint
 
 
 def print_test_result(caller, result):
@@ -31,8 +32,9 @@ class TestIgClient(unittest.TestCase):
         print_test_result(inspect.stack()[0][0].f_code.co_name, self.client.token)
 
     def test_get_accounts(self):
-        accounts = self.client.get_accounts()
-        self.assertNotEqual(bool(accounts), False, "No account retrieved")
+        response = self.client.get_accounts()
+        for account in response.accounts:
+            pprint(vars(account))
 
     def test_transactions(self):
         data = self.client.get_transactions(datetime.datetime(2020, 7, 1))

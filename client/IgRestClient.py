@@ -4,6 +4,7 @@ import json
 
 from client.model.Resolution import Resolution
 from client.response.Accounts import accounts_from_dict
+from client.response.Positions import positions_from_dict
 
 
 class IgRestClient:
@@ -78,7 +79,8 @@ class IgRestClient:
             return json.loads(response.text)
 
     def get_positions(self):
-        return self.__get_response__(self.POSITIONS_URI, "2")
+        response = self.__get_response__(self.POSITIONS_URI, "2")
+        return positions_from_dict(json.loads(response))
 
     def get_accounts(self):
         response = self.__get_response__(self.ACCOUNTS_URI, "1")

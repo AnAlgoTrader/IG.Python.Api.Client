@@ -1,7 +1,11 @@
+from datetime import datetime
+from enum import Enum
 from typing import Any, List, TypeVar, Type, cast, Callable
 
+import dateutil.parser
 
 T = TypeVar("T")
+EnumT = TypeVar("EnumT", bound=Enum)
 
 
 def from_float(x: Any) -> float:
@@ -37,3 +41,17 @@ def to_class(c: Type[T], x: Any) -> dict:
 def from_list(f: Callable[[Any], T], x: Any) -> List[T]:
     assert isinstance(x, list)
     return [f(y) for y in x]
+
+
+def from_int(x: Any) -> int:
+    assert isinstance(x, int) and not isinstance(x, bool)
+    return x
+
+
+def from_datetime(x: Any) -> datetime:
+    return dateutil.parser.parse(x)
+
+
+def to_enum(c: Type[EnumT], x: Any) -> EnumT:
+    assert isinstance(x, c)
+    return x.value

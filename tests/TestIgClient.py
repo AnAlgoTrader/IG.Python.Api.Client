@@ -17,6 +17,12 @@ def print_test_result(caller, result):
     print("result:" + result, end="\n\n")
 
 
+def print_test_header(caller):
+    print("-------------------------", end="\n")
+    print("test: " + caller, end="\n")
+    print("-------------------------", end="\n")
+
+
 class TestIgClient(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
@@ -31,8 +37,15 @@ class TestIgClient(unittest.TestCase):
         self.assertNotEqual(self.client.token, "not authenticated", "Authentication error")
         print_test_result(inspect.stack()[0][0].f_code.co_name, self.client.token)
 
+    def test_get_positions(self):
+        response = self.client.get_positions()
+        print_test_header(inspect.stack()[0][0].f_code.co_name)
+        for position in response.positions:
+            pprint(vars(position))
+
     def test_get_accounts(self):
         response = self.client.get_accounts()
+        print_test_header(inspect.stack()[0][0].f_code.co_name)
         for account in response.accounts:
             pprint(vars(account))
 
@@ -54,12 +67,6 @@ class TestIgClient(unittest.TestCase):
         self.assertNotEqual(bool(data), False, "No prices retrieved")
         print_test_result(inspect.stack()[0][0].f_code.co_name,
                           json.dumps(data['prices'], indent=4, sort_keys=True))
-
-    def test_positions(self):
-        data = self.client.get_positions()
-        self.assertNotEqual(bool(data), False, "No positions retrieved")
-        print_test_result(inspect.stack()[0][0].f_code.co_name,
-                          json.dumps(data['positions'], indent=4, sort_keys=True))
 
     def test_create_order(self):
         create_working_order_request = CreateWorkingOrderRequest()

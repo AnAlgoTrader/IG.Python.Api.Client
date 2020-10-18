@@ -61,12 +61,12 @@ class TestIgClient(unittest.TestCase):
         for activity in response.activities:
             pprint(vars(activity))
 
-    def test_prices(self):
-        data = self.client.get_prices('IX.D.FTSE.DAILY.IP', Resolution.DAY,
-                                      datetime.datetime(2020, 7, 20), datetime.datetime(2020, 7, 21))
-        self.assertNotEqual(bool(data), False, "No prices retrieved")
-        print_test_result(inspect.stack()[0][0].f_code.co_name,
-                          json.dumps(data['prices'], indent=4, sort_keys=True))
+    def test_get_historical_prices(self):
+        response = self.client.get_historical_prices('IX.D.FTSE.DAILY.IP', Resolution.DAY,
+                                                     datetime.datetime(2020, 10, 1), datetime.datetime(2020, 10, 15))
+        print_test_header(inspect.stack()[0][0].f_code.co_name)
+        for price in response.prices:
+            pprint(vars(price))
 
     def test_create_order(self):
         create_working_order_request = CreateWorkingOrderRequest()

@@ -7,6 +7,7 @@ from client.response.Accounts import accounts_from_dict
 from client.response.Positions import positions_from_dict
 from client.response.Transactions import transactions_from_dict
 from client.response.Activities import activities_from_dict
+from client.response.Prices import prices_from_dict
 
 
 class IgRestClient:
@@ -98,12 +99,13 @@ class IgRestClient:
         response = self.__get_response__(''.join(url), "3")
         return activities_from_dict(json.loads(response))
 
-    def get_prices(self, epic, resolution: Resolution, from_date: datetime, to_date: datetime):
+    def get_historical_prices(self, epic, resolution: Resolution, from_date: datetime, to_date: datetime):
         from_date_formatted = from_date.strftime("%Y-%m-%d") + 'T00%3A00%3A00'
         to_date_formatted = to_date.strftime("%Y-%m-%d") + 'T00%3A00%3A00'
         url = [self.PRICES_URI, '/', epic, '?resolution=', resolution.name,
                '&from=', from_date_formatted, '&to=', to_date_formatted]
-        return self.__get_response__(''.join(url), "3")
+        response = self.__get_response__(''.join(url), "3")
+        return prices_from_dict(json.loads(response))
 
     def create_working_order(self, request):
         return self.__post_response__(self.WORKING_ORDERS_URI, request, None, "2")

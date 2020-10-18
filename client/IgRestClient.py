@@ -6,6 +6,7 @@ from client.model.Resolution import Resolution
 from client.response.Accounts import accounts_from_dict
 from client.response.Positions import positions_from_dict
 from client.response.Transactions import transactions_from_dict
+from client.response.Activities import activities_from_dict
 
 
 class IgRestClient:
@@ -94,7 +95,8 @@ class IgRestClient:
 
     def get_activities(self, from_date: datetime):
         url = [self.ACTIVITIES_URI, '?from=', from_date.strftime("%Y-%m-%d")]
-        return self.__get_response__(''.join(url), "3")
+        response = self.__get_response__(''.join(url), "3")
+        return activities_from_dict(json.loads(response))
 
     def get_prices(self, epic, resolution: Resolution, from_date: datetime, to_date: datetime):
         from_date_formatted = from_date.strftime("%Y-%m-%d") + 'T00%3A00%3A00'

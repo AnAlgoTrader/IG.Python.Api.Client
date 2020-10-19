@@ -9,6 +9,8 @@ from igRestApiClient.model.Resolution import Resolution
 from igRestApiClient.request.CreateWorkingOrderRequest import CreateWorkingOrderRequest
 from pprint import pprint
 
+from igRestApiClient.response.Error import Error
+
 
 def print_test_result(caller, result):
     print("-------------------------", end="\n")
@@ -64,11 +66,14 @@ class TestIgClient(unittest.TestCase):
             pprint(vars(activity))
 
     def test_get_historical_prices(self):
-        response = self.client.get_historical_prices('IX.D.FTSE.DAILY.IP', Resolution.DAY,
+        response = self.client.get_historical_prices('KC.D.BUDPZ.DAILY.IP', Resolution.DAY,
                                                      datetime.datetime(2020, 10, 1), datetime.datetime(2020, 10, 15))
         print_test_header(inspect.stack()[0][0].f_code.co_name)
-        for price in response.prices:
-            pprint(vars(price))
+        if isinstance(response, Error):
+            print(response.error_code)
+        else:
+            for price in response.prices:
+                pprint(vars(price))
 
     def test_create_order(self):
         create_working_order_request = CreateWorkingOrderRequest()

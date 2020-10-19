@@ -13,6 +13,7 @@ from igRestApiClient.response.Activities import activities_from_dict
 from igRestApiClient.response.Prices import prices_from_dict
 from igRestApiClient.response.Authentication import authentication_from_dict
 from igRestApiClient.response.Authentication import authentication_to_dict
+from igRestApiClient.response.Error import error_from_dict
 
 
 class IgRestClient:
@@ -81,7 +82,8 @@ class IgRestClient:
                    "X-SECURITY-TOKEN": self.authentication.token}
         response = requests.get(self.base_uri + url, headers=headers)
         if response.status_code != 200:
-            raise Exception("invalid response calling " + self.base_uri + url)
+            self.error = error_from_dict(json.loads(response.text))
+            return None
         else:
             return response.text
 
@@ -129,7 +131,10 @@ class IgRestClient:
         url = [self.PRICES_URI, '/', epic, '?resolution=', resolution.name,
                '&from=', from_date_formatted, '&to=', to_date_formatted]
         response = self.__get_response__(''.join(url), "3")
-        return prices_from_dict(json.loads(response))
+        if response is None:
+            return self.error
+        else:
+            return prices_from_dict(json.loads(response))
 
     def create_working_order(self, request):
         return self.__post_response__(self.WORKING_ORDERS_URI, request, None, "2")

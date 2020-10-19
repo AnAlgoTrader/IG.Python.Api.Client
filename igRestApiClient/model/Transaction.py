@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 
-from helper.TypeConverter import *
-from model.enum.Currency import Currency
-from model.enum.Period import Period
-from model.enum.TransactionType import TransactionType
+from igRestApiClient.helper.TypeConverter import *
+from igRestApiClient.model.enum.Currency import Currency
+from igRestApiClient.model.enum.Period import Period
+from igRestApiClient.model.enum.TransactionType import TransactionType
 
 
 @dataclass

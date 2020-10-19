@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 
-from helper.TypeConverter import *
-from model.enum.Expiry import Expiry
-from model.enum.InstrumentType import InstrumentType
-from model.enum.MarketStatus import MarketStatus
+from igRestApiClient.helper.TypeConverter import *
+from igRestApiClient.model.enum.Expiry import Expiry
+from igRestApiClient.model.enum.InstrumentType import InstrumentType
+from igRestApiClient.model.enum.MarketStatus import MarketStatus
 
 
 @dataclass

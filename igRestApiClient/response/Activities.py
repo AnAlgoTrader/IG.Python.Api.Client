@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from helper.TypeConverter import *
-from model.Activity import Activity
+from igRestApiClient.helper.TypeConverter import *
+from igRestApiClient.model.Activity import Activity
 
 
 @dataclass

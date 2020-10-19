@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from helper.TypeConverter import *
-from model.Transaction import Transaction
+from igRestApiClient.helper.TypeConverter import *
+from igRestApiClient.model.Transaction import Transaction
 
 
 @dataclass

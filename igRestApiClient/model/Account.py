@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from helper.TypeConverter import *
-from model.Balance import Balance
+from igRestApiClient.helper.TypeConverter import *
+from igRestApiClient.model.Balance import Balance
 
 
 @dataclass

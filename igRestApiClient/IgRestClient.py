@@ -5,14 +5,14 @@ import requests
 import datetime
 import json
 
-from model.Resolution import Resolution
-from response.Accounts import accounts_from_dict
-from response.Positions import positions_from_dict
-from response.Transactions import transactions_from_dict
-from response.Activities import activities_from_dict
-from response.Prices import prices_from_dict
-from response.Authentication import authentication_from_dict
-from response.Authentication import authentication_to_dict
+from igRestApiClient.model.Resolution import Resolution
+from igRestApiClient.response.Accounts import accounts_from_dict
+from igRestApiClient.response.Positions import positions_from_dict
+from igRestApiClient.response.Transactions import transactions_from_dict
+from igRestApiClient.response.Activities import activities_from_dict
+from igRestApiClient.response.Prices import prices_from_dict
+from igRestApiClient.response.Authentication import authentication_from_dict
+from igRestApiClient.response.Authentication import authentication_to_dict
 
 
 class IgRestClient:

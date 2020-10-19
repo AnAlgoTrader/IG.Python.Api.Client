@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from helper.TypeConverter import *
-from model.enum.Period import Period
-from model.enum.Status import Status
+from igRestApiClient.helper.TypeConverter import *
+from igRestApiClient.model.enum.Period import Period
+from igRestApiClient.model.enum.Status import Status
 
 
 @dataclass

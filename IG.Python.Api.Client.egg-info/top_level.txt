@@ -1,4 +1,0 @@
-helper
-model
-request
-response

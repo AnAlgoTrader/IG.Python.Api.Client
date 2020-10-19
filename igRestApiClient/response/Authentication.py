@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from helper.TypeConverter import *
-from model.AccountInfo import AccountInfo
-from model.AuthenticationAccount import AuthenticationAccount
+from igRestApiClient.helper.TypeConverter import *
+from igRestApiClient.model.AccountInfo import AccountInfo
+from igRestApiClient.model.AuthenticationAccount import AuthenticationAccount
 
 
 @dataclass

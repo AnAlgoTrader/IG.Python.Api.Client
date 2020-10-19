@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from helper.TypeConverter import *
+from igRestApiClient.helper.TypeConverter import *
 
 
 @dataclass

@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from helper.TypeConverter import *
-from model.Market import Market
-from model.Position import Position
+from igRestApiClient.helper.TypeConverter import *
+from igRestApiClient.model.Market import Market
+from igRestApiClient.model.Position import Position
 
 
 @dataclass

@@ -6,6 +6,7 @@ from client.model.AuthenticationAccount import AuthenticationAccount
 
 @dataclass
 class Authentication:
+    date: str
     account_type: str
     account_info: AccountInfo
     currency_iso_code: str
@@ -27,6 +28,7 @@ class Authentication:
     @staticmethod
     def from_dict(obj: Any) -> 'Authentication':
         assert isinstance(obj, dict)
+        date = obj.get("date")
         account_type = from_str(obj.get("accountType"))
         account_info = AccountInfo.from_dict(obj.get("accountInfo"))
         currency_iso_code = from_str(obj.get("currencyIsoCode"))
@@ -44,13 +46,15 @@ class Authentication:
         trailing_stops_enabled = from_bool(obj.get("trailingStopsEnabled"))
         rerouting_environment = from_none(obj.get("reroutingEnvironment"))
         dealing_enabled = from_bool(obj.get("dealingEnabled"))
-        return Authentication(account_type, account_info, currency_iso_code, currency_symbol, current_account_id,
+        return Authentication(date, account_type, account_info, currency_iso_code, currency_symbol, current_account_id,
                               lightstreamer_endpoint, accounts, token, api_key, cst, client_id, timezone_offset,
                               has_active_demo_accounts, has_active_live_accounts, trailing_stops_enabled,
                               rerouting_environment, dealing_enabled)
 
     def to_dict(self) -> dict:
-        result: dict = {"accountType": from_str(self.account_type),
+        result: dict = {
+                        "date": self.date.strftime("%Y/%m/%d/, %H:%M:%S"),
+                        "accountType": from_str(self.account_type),
                         "accountInfo": to_class(AccountInfo, self.account_info),
                         "currencyIsoCode": from_str(self.currency_iso_code),
                         "currencySymbol": from_str(self.currency_symbol),

@@ -23,10 +23,10 @@ class IgRestClient:
 
     def __authenticate__(self, creds):
         auth_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), self.auth_response_file)
-        if os.path.isfile(auth_path):
-            pass
-        else:
-            self.__auth__(creds)
+        # if os.path.isfile(auth_path):
+            # pass
+        # else:
+        self.__auth__(creds)
 
     def __auth__(self, creds):
         username = creds['ig.username']
@@ -42,6 +42,7 @@ class IgRestClient:
             self.authentication.token = response.headers['X-SECURITY-TOKEN']
             self.authentication.api_key = key
             self.authentication.cst = response.headers['CST']
+            self.authentication.date = datetime.datetime.now()
             with open(self.auth_response_file, 'w') as file_to_write:
                 file_to_write.write(json.dumps(authentication_to_dict(self.authentication)))
 

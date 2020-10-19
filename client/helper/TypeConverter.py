@@ -49,7 +49,10 @@ def from_int(x: Any) -> int:
 
 
 def from_datetime(x: Any) -> datetime:
-    return dateutil.parser.parse(x)
+    if x is None:
+        return datetime.min
+    else:
+        return dateutil.parser.parse(x)
 
 
 def to_enum(c: Type[EnumT], x: Any) -> EnumT:

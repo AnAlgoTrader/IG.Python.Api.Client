@@ -34,8 +34,8 @@ class TestIgClient(unittest.TestCase):
         self.assertEqual(self.client.environment, "demo", "Client not connected to the demo environment")
 
     def test_token(self):
-        self.assertNotEqual(self.client.token, "not authenticated", "Authentication error")
-        print_test_result(inspect.stack()[0][0].f_code.co_name, self.client.token)
+        self.assertNotEqual(self.client.authentication.token, "not authenticated", "Authentication error")
+        print_test_result(inspect.stack()[0][0].f_code.co_name, self.client.authentication.token)
 
     def test_get_positions(self):
         response = self.client.get_positions()

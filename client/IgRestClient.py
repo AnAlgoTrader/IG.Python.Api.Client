@@ -11,16 +11,18 @@ from client.response.Transactions import transactions_from_dict
 from client.response.Activities import activities_from_dict
 from client.response.Prices import prices_from_dict
 from client.response.Authentication import authentication_from_dict
+from client.response.Authentication import authentication_to_dict
 
 
 class IgRestClient:
     def __init__(self, creds):
         self.__set_uris__()
         self.__set_base_uri__(creds)
+        self.auth_response_file = 'auth.response.json'
         self.__authenticate__(creds)
 
     def __authenticate__(self, creds):
-        auth_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.response.json')
+        auth_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), self.auth_response_file)
         if os.path.isfile(auth_path):
             pass
         else:
@@ -34,12 +36,14 @@ class IgRestClient:
         data = {"identifier": username, "password": password}
         response = requests.post(self.base_uri + self.SESSION_URI, json=data, headers=headers)
         if response.status_code != 200:
-            self.token = 'not authenticated'
+            self.authentication.token = 'not authenticated'
         else:
             self.authentication = authentication_from_dict(json.loads(response.text))
             self.authentication.token = response.headers['X-SECURITY-TOKEN']
             self.authentication.api_key = key
             self.authentication.cst = response.headers['CST']
+            with open(self.auth_response_file, 'w') as file_to_write:
+                file_to_write.write(json.dumps(authentication_to_dict(self.authentication)))
 
     def __set_base_uri__(self, data):
         self.environment = data['ig.environment']
@@ -65,7 +69,7 @@ class IgRestClient:
         headers = {"X-IG-API-KEY": self.authentication.api_key,
                    "VERSION": version,
                    "CST": self.authentication.cst,
-                   "X-SECURITY-TOKEN": self.token}
+                   "X-SECURITY-TOKEN": self.authentication.token}
         response = requests.get(self.base_uri + url, headers=headers)
         if response.status_code != 200:
             raise Exception("invalid response calling " + self.base_uri + url)
@@ -77,13 +81,13 @@ class IgRestClient:
             headers = {'Content-type': 'application/json',
                        "X-IG-API-KEY": self.authentication.api_key,
                        "VERSION": version, "CST": self.authentication.cst,
-                       "X-SECURITY-TOKEN": self.token}
+                       "X-SECURITY-TOKEN": self.authentication.token}
         else:
             headers = {'Content-type': 'application/json',
                        "X-IG-API-KEY": self.authentication.api_key,
                        "VERSION": version,
                        "CST": self.authentication.cst,
-                       "X-SECURITY-TOKEN": self.token,
+                       "X-SECURITY-TOKEN": self.authentication.token,
                        "_method": method}
         json_content = json.dumps(request.__dict__)
         response = requests.post(self.base_uri + url, headers=headers, data=json_content)

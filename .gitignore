@@ -360,3 +360,4 @@ MigrationBackup/
 /Scripts/
 /Lib/
 tests/auth.personal.json
+tests/auth.response.json

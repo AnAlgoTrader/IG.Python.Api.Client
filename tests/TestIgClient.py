@@ -35,7 +35,9 @@ class TestIgClient(unittest.TestCase):
 
     def test_token(self):
         self.assertNotEqual(self.client.authentication.token, "not authenticated", "Authentication error")
-        print_test_result(inspect.stack()[0][0].f_code.co_name, self.client.authentication.token)
+        print_test_header(inspect.stack()[0][0].f_code.co_name)
+        print(self.client.authentication.date)
+        print("token:" + self.client.authentication.token)
 
     def test_get_positions(self):
         response = self.client.get_positions()

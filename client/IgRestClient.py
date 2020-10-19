@@ -1,5 +1,6 @@
 import os
 
+import dateutil
 import requests
 import datetime
 import json
@@ -25,8 +26,12 @@ class IgRestClient:
         auth_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), self.auth_response_file)
         if os.path.isfile(auth_path):
             with open(auth_path) as json_file:
-                auth_from_file = authentication_from_dict(json.loads(json_file))
-                x = ""
+                auth = authentication_from_dict(json.loads(json_file.read()))
+            diff_seconds = (datetime.datetime.now() - dateutil.parser.parse(auth.date)).seconds
+            if diff_seconds > (5 * 3600):  # token expires in 5 hours (6 hours are given by the server)
+                self.__auth__(creds)
+            else:
+                self.authentication = auth
         else:
             self.__auth__(creds)
 

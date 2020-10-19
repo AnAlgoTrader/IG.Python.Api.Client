@@ -1,3 +1,5 @@
+import os
+
 import requests
 import datetime
 import json
@@ -8,13 +10,21 @@ from client.response.Positions import positions_from_dict
 from client.response.Transactions import transactions_from_dict
 from client.response.Activities import activities_from_dict
 from client.response.Prices import prices_from_dict
+from client.response.Authentication import authentication_from_dict
 
 
 class IgRestClient:
     def __init__(self, creds):
         self.__set_uris__()
         self.__set_base_uri__(creds)
-        self.__auth__(creds)
+        self.__authenticate__(creds)
+
+    def __authenticate__(self, creds):
+        auth_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.response.json')
+        if os.path.isfile(auth_path):
+            pass
+        else:
+            self.__auth__(creds)
 
     def __auth__(self, creds):
         username = creds['ig.username']
@@ -26,9 +36,10 @@ class IgRestClient:
         if response.status_code != 200:
             self.token = 'not authenticated'
         else:
-            self.token = response.headers['X-SECURITY-TOKEN']
-            self.api_key = key
-            self.cst = response.headers['CST']
+            self.authentication = authentication_from_dict(json.loads(response.text))
+            self.authentication.token = response.headers['X-SECURITY-TOKEN']
+            self.authentication.api_key = key
+            self.authentication.cst = response.headers['CST']
 
     def __set_base_uri__(self, data):
         self.environment = data['ig.environment']
@@ -51,9 +62,9 @@ class IgRestClient:
         self.TRADE_CONFIRM_URI = "/gateway/deal/confirms"
 
     def __get_response__(self, url, version):
-        headers = {"X-IG-API-KEY": self.api_key,
+        headers = {"X-IG-API-KEY": self.authentication.api_key,
                    "VERSION": version,
-                   "CST": self.cst,
+                   "CST": self.authentication.cst,
                    "X-SECURITY-TOKEN": self.token}
         response = requests.get(self.base_uri + url, headers=headers)
         if response.status_code != 200:
@@ -64,14 +75,14 @@ class IgRestClient:
     def __post_response__(self, url, request, method, version):
         if method is None:
             headers = {'Content-type': 'application/json',
-                       "X-IG-API-KEY": self.api_key,
-                       "VERSION": version, "CST": self.cst,
+                       "X-IG-API-KEY": self.authentication.api_key,
+                       "VERSION": version, "CST": self.authentication.cst,
                        "X-SECURITY-TOKEN": self.token}
         else:
             headers = {'Content-type': 'application/json',
-                       "X-IG-API-KEY": self.api_key,
+                       "X-IG-API-KEY": self.authentication.api_key,
                        "VERSION": version,
-                       "CST": self.cst,
+                       "CST": self.authentication.cst,
                        "X-SECURITY-TOKEN": self.token,
                        "_method": method}
         json_content = json.dumps(request.__dict__)

@@ -27,8 +27,8 @@ class TestIgClient(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(TestIgClient, self).__init__(*args, **kwargs)
-        config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.personal.json')
-        with open(config_path) as json_file:
+        creds_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.personal.json')
+        with open(creds_path) as json_file:
             creds = json.load(json_file)
         self.client = IgRestClient(creds)
         self.assertEqual(self.client.environment, "demo", "Client not connected to the demo environment")

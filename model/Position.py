@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from client.helper.TypeConverter import *
-from client.model.enum.Currency import Currency
-from client.model.enum.Direction import Direction
+from helper.TypeConverter import *
+from model.enum.Currency import Currency
+from model.enum.Direction import Direction
 
 
 @dataclass

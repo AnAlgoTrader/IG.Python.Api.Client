@@ -4,9 +4,9 @@ import inspect
 import json
 import unittest
 
-from client.IgRestClient import IgRestClient
-from client.model.Resolution import Resolution
-from client.request.CreateWorkingOrderRequest import CreateWorkingOrderRequest
+from IgRestClient import IgRestClient
+from model.Resolution import Resolution
+from request.CreateWorkingOrderRequest import CreateWorkingOrderRequest
 from pprint import pprint
 
 

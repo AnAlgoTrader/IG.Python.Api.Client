@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from client.helper.TypeConverter import *
-from client.model.Transaction import Transaction
+from helper.TypeConverter import *
+from model.Transaction import Transaction
 
 
 @dataclass

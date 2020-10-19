@@ -359,5 +359,5 @@ MigrationBackup/
 .idea
 /Scripts/
 /Lib/
+auth.response.json
 tests/auth.personal.json
-client/auth.response.json

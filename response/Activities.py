@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from client.helper.TypeConverter import *
-from client.model.Activity import Activity
+from helper.TypeConverter import *
+from model.Activity import Activity
 
 
 @dataclass

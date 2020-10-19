@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from client.helper.TypeConverter import *
-from client.model.Price import Price
+from helper.TypeConverter import *
+from model.Price import Price
 
 
 @dataclass

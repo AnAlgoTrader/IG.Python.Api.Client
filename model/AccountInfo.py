@@ -1,22 +1,22 @@
 from dataclasses import dataclass
-from client.helper.TypeConverter import *
+from helper.TypeConverter import *
 
 
 @dataclass
-class Balance:
+class AccountInfo:
     balance: float
     deposit: float
     profit_loss: float
     available: float
 
     @staticmethod
-    def from_dict(obj: Any) -> 'Balance':
+    def from_dict(obj: Any) -> 'AccountInfo':
         assert isinstance(obj, dict)
         balance = from_float(obj.get("balance"))
         deposit = from_float(obj.get("deposit"))
         profit_loss = from_float(obj.get("profitLoss"))
         available = from_float(obj.get("available"))
-        return Balance(balance, deposit, profit_loss, available)
+        return AccountInfo(balance, deposit, profit_loss, available)
 
     def to_dict(self) -> dict:
         result: dict = {"balance": to_float(self.balance), "deposit": to_float(self.deposit),

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from client.helper.TypeConverter import *
-from client.model.enum.Period import Period
-from client.model.enum.Status import Status
+from helper.TypeConverter import *
+from model.enum.Period import Period
+from model.enum.Status import Status
 
 
 @dataclass

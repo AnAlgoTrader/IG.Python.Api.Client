@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 
-from client.helper.TypeConverter import *
-from client.model.enum.Expiry import Expiry
-from client.model.enum.InstrumentType import InstrumentType
-from client.model.enum.MarketStatus import MarketStatus
+from helper.TypeConverter import *
+from model.enum.Expiry import Expiry
+from model.enum.InstrumentType import InstrumentType
+from model.enum.MarketStatus import MarketStatus
 
 
 @dataclass

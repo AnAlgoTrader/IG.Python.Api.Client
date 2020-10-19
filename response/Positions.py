@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from client.helper.TypeConverter import *
-from client.model.Market import Market
-from client.model.Position import Position
+from helper.TypeConverter import *
+from model.Market import Market
+from model.Position import Position
 
 
 @dataclass

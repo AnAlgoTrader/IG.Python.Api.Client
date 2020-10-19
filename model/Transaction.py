@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 
-from client.helper.TypeConverter import *
-from client.model.enum.Currency import Currency
-from client.model.enum.Period import Period
-from client.model.enum.TransactionType import TransactionType
+from helper.TypeConverter import *
+from model.enum.Currency import Currency
+from model.enum.Period import Period
+from model.enum.TransactionType import TransactionType
 
 
 @dataclass

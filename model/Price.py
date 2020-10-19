@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from client.helper.TypeConverter import *
+from helper.TypeConverter import *
 
 
 @dataclass

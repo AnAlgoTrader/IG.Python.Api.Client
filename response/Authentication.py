@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from client.helper.TypeConverter import *
-from client.model.AccountInfo import AccountInfo
-from client.model.AuthenticationAccount import AuthenticationAccount
+from helper.TypeConverter import *
+from model.AccountInfo import AccountInfo
+from model.AuthenticationAccount import AuthenticationAccount
 
 
 @dataclass

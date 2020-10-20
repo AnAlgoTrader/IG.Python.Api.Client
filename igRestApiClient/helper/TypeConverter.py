@@ -9,8 +9,11 @@ EnumT = TypeVar("EnumT", bound=Enum)
 
 
 def from_float(x: Any) -> float:
-    assert isinstance(x, (float, int)) and not isinstance(x, bool), "x is not a float: %s" % x
-    return float(x)
+    if x is None:
+        return 0.0
+    else:
+        assert isinstance(x, (float, int)) and not isinstance(x, bool), "x is not a float: %s" % x
+        return float(x)
 
 
 def to_float(x: Any) -> float:

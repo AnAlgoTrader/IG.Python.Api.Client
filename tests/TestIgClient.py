@@ -65,7 +65,7 @@ class TestIgClient(unittest.TestCase):
             pprint(vars(activity))
 
     def test_get_historical_prices(self):
-        response = self.client.get_historical_prices('KC.D.BUDPZ.DAILY.IP', Resolution.DAY,
+        response = self.client.get_historical_prices('KA.D.AEN.DAILY.IP', Resolution.DAY,
                                                      datetime.datetime(2020, 10, 1), datetime.datetime(2020, 10, 15))
         print_test_header(inspect.stack()[0][0].f_code.co_name)
         if isinstance(response, IGApiError):

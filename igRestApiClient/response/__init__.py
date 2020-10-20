@@ -1,1 +1,1 @@
-__all__ = ["Accounts", "Activities", "Authentication", "Positions", "Prices", "Transactions"]
+__all__ = ["Accounts", "Activities", "Authentication", "Positions", "Prices", "Transactions", "IGApiError"]

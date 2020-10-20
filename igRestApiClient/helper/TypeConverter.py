@@ -12,7 +12,7 @@ def from_float(x: Any) -> float:
     if x is None:
         return 0.0
     else:
-        assert isinstance(x, (float, int)) and not isinstance(x, bool), "x is not a float: %s" % x
+        assert isinstance(x, (float, int)) and not isinstance(x, bool)
         return float(x)
 
 

@@ -15,4 +15,3 @@ class CreateWorkingOrderRequest:
     stopDistance = None
     stopLevel = None
     goodTillDate = None
-

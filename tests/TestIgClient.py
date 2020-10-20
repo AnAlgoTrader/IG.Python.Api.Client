@@ -3,12 +3,11 @@ import datetime
 import inspect
 import json
 import unittest
+from pprint import pprint
 
 from igRestApiClient.IgRestClient import IgRestClient
 from igRestApiClient.model.Resolution import Resolution
 from igRestApiClient.request.CreateWorkingOrderRequest import CreateWorkingOrderRequest
-from pprint import pprint
-
 from igRestApiClient.response.IGApiError import IGApiError
 
 

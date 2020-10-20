@@ -13,7 +13,7 @@ from igRestApiClient.response.Activities import activities_from_dict
 from igRestApiClient.response.Prices import prices_from_dict
 from igRestApiClient.response.Authentication import authentication_from_dict
 from igRestApiClient.response.Authentication import authentication_to_dict
-from igRestApiClient.response.Error import error_from_dict
+from igRestApiClient.response.IGApiError import error_from_dict
 
 
 class IgRestClient:

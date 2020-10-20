@@ -9,7 +9,7 @@ from igRestApiClient.model.Resolution import Resolution
 from igRestApiClient.request.CreateWorkingOrderRequest import CreateWorkingOrderRequest
 from pprint import pprint
 
-from igRestApiClient.response.Error import Error
+from igRestApiClient.response.IGApiError import IGApiError
 
 
 def print_test_result(caller, result):
@@ -69,7 +69,7 @@ class TestIgClient(unittest.TestCase):
         response = self.client.get_historical_prices('KC.D.BUDPZ.DAILY.IP', Resolution.DAY,
                                                      datetime.datetime(2020, 10, 1), datetime.datetime(2020, 10, 15))
         print_test_header(inspect.stack()[0][0].f_code.co_name)
-        if isinstance(response, Error):
+        if isinstance(response, IGApiError):
             print(response.error_code)
         else:
             for price in response.prices:

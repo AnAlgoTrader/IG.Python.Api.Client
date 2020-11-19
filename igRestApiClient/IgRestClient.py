@@ -17,10 +17,10 @@ from igRestApiClient.response.IGApiError import error_from_dict
 
 
 class IgRestClient:
-    def __init__(self, creds):
+    def __init__(self, creds, path_auth_response):
         self.__set_uris__()
         self.__set_base_uri__(creds)
-        self.auth_response_file = 'auth.response.json'
+        self.auth_response_file = path_auth_response
         self.__authenticate__(creds)
 
     def __authenticate__(self, creds):

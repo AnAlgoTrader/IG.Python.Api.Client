@@ -1,6 +1,6 @@
 from enum import Enum
 
 
-class MarketStatus(Enum, str):
+class MarketStatus(str, Enum):
     EDITS_ONLY = 'EDITS_ONLY',
     TRADEABLE = 'TRADEABLE'

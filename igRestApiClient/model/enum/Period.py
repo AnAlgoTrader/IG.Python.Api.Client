@@ -1,6 +1,6 @@
 from enum import Enum
 
 
-class Period(Enum):
-    DFB = "DFB"
-    EMPTY = "-"
+class Period(str, Enum):
+    DFB = 'DFB'
+    EMPTY = '-'

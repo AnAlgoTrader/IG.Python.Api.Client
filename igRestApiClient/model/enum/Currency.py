@@ -1,6 +1,6 @@
 from enum import Enum
 
 
-class Currency(Enum):
-    GBP = "GBP"
-    EMPTY = "£"
+class Currency(str, Enum):
+    GBP = 'GBP'
+    EMPTY = '£'

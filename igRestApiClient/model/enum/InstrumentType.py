@@ -1,5 +1,5 @@
 from enum import Enum
 
 
-class InstrumentType(Enum):
-    CURRENCIES = "CURRENCIES"
+class InstrumentType(str, Enum):
+    CURRENCIES = 'CURRENCIES'

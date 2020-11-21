@@ -1,5 +1,5 @@
 from enum import Enum
 
 
-class Expiry(Enum):
-    DFB = "DFB"
+class Expiry(str, Enum):
+    DFB = 'DFB'

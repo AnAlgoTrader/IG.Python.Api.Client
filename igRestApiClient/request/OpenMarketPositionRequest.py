@@ -5,7 +5,7 @@ from igRestApiClient.model.enum.OrderType import OrderType
 
 class OpenMarketPositionRequest:
     epic = None
-    side = None
+    direction = None
     size = None
     expiry = Expiry.DFB
     orderType = OrderType.Market

@@ -141,7 +141,7 @@ class IgRestClient:
     def open_market_position(self, epic, side, size):
         request = OpenMarketPositionRequest()
         request.epic = epic
-        request.side = side
+        request.direction = side
         request.size = size
         return self.__post_response__(self.POSITIONS_OTC_URI, request, None, "2")
 

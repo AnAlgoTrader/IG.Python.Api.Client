@@ -6,6 +6,9 @@ import datetime
 import json
 
 from igRestApiClient.model.Resolution import Resolution
+from igRestApiClient.model.enum.OrderType import OrderType
+from igRestApiClient.model.enum.Currency import Currency
+from igRestApiClient.model.enum.Expiry import Expiry
 from igRestApiClient.request.OpenMarketPositionRequest import OpenMarketPositionRequest
 from igRestApiClient.response.Accounts import accounts_from_dict
 from igRestApiClient.response.Positions import positions_from_dict
@@ -143,6 +146,12 @@ class IgRestClient:
         request.epic = epic
         request.direction = side
         request.size = size
+        request.expiry = Expiry.DFB
+        request.orderType = OrderType.Market
+        request.guaranteedStop = False
+        request.trailingStop = False
+        request.forceOpen = True
+        request.currencyCode = Currency.GBP
         return self.__post_response__(self.POSITIONS_OTC_URI, request, None, "2")
 
     def create_working_order(self, request):

@@ -1,1 +1,2 @@
-__all__ = ["Currency", "Direction", "Expiry", "InstrumentType", "MarketStatus", "Period", "Status", "TransactionType"]
+__all__ = ["Currency", "Direction", "Expiry", "InstrumentType", "MarketStatus",
+           "Period", "Status", "TransactionType", "OrderType"]

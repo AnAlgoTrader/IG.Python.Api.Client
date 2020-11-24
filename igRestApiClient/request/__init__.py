@@ -1,1 +1,1 @@
-__all__ = ["CreateWorkingOrderRequest"]
+__all__ = ["CreateWorkingOrderRequest", "OpenMarketPositionRequest"]

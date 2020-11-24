@@ -6,6 +6,7 @@ import datetime
 import json
 
 from igRestApiClient.model.Resolution import Resolution
+from igRestApiClient.request.OpenMarketPositionRequest import OpenMarketPositionRequest
 from igRestApiClient.response.Accounts import accounts_from_dict
 from igRestApiClient.response.Positions import positions_from_dict
 from igRestApiClient.response.Transactions import transactions_from_dict
@@ -135,6 +136,13 @@ class IgRestClient:
             return self.error
         else:
             return prices_from_dict(json.loads(response))
+
+    def open_market_position(self, epic, side, size):
+        request = OpenMarketPositionRequest()
+        request.epic = epic
+        request.side = side
+        request.size = size
+        return self.__post_response__(self.POSITIONS_OTC_URI, request, None, "2")
 
     def create_working_order(self, request):
         return self.__post_response__(self.WORKING_ORDERS_URI, request, None, "2")

@@ -7,9 +7,9 @@ class OpenMarketPositionRequest:
     epic = None
     direction = None
     size = None
-    expiry = Expiry.DFB
-    orderType = OrderType.Market
+    expiry = Expiry.DFB.value
+    orderType = OrderType.Market.value
     guaranteedStop = False,
     trailingStop = False,
     forceOpen = True,
-    currencyCode = Currency.GBP
+    currencyCode = Currency.GBP.value

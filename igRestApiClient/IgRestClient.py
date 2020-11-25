@@ -114,7 +114,7 @@ class IgRestClient:
             message = ''.join(['invalid response calling ', self.base_uri + url, response.text])
             raise Exception(message)
         else:
-            return json.loads(response.text)
+            return response.text
 
     def get_positions(self):
         response = self.__get_response__(self.POSITIONS_URI, "2")

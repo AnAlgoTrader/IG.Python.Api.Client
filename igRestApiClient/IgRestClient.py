@@ -13,6 +13,8 @@ from igRestApiClient.model.enum.Expiry import Expiry
 from igRestApiClient.request.CloseMarketPositionRequest import CloseMarketPositionRequest
 from igRestApiClient.request.OpenMarketPositionRequest import OpenMarketPositionRequest
 from igRestApiClient.response.Accounts import accounts_from_dict
+from igRestApiClient.response.ClosePositionReponse import close_position_response_from_dict
+from igRestApiClient.response.OpenPositionResponse import open_position_response_from_dict
 from igRestApiClient.response.Positions import positions_from_dict
 from igRestApiClient.response.Transactions import transactions_from_dict
 from igRestApiClient.response.Activities import activities_from_dict
@@ -154,7 +156,8 @@ class IgRestClient:
         request.trailingStop = False
         request.forceOpen = True
         request.currencyCode = Currency.GBP
-        return self.__post_response__(self.POSITIONS_OTC_URI, request, None, "2")
+        response = self.__post_response__(self.POSITIONS_OTC_URI, request, None, "2")
+        return open_position_response_from_dict(json.loads(response))
 
     def close_market_position(self, deal_id, side, size):
         request = CloseMarketPositionRequest()
@@ -162,7 +165,8 @@ class IgRestClient:
         request.direction = Direction.BUY if side == Direction.SELL.value else Direction.SELL
         request.orderType = OrderType.Market
         request.size = size
-        return self.__post_response__(self.POSITIONS_OTC_URI, request, "DELETE", "1")
+        response = self.__post_response__(self.POSITIONS_OTC_URI, request, "DELETE", "1")
+        return close_position_response_from_dict(json.loads(response))
 
     def create_working_order(self, request):
         return self.__post_response__(self.WORKING_ORDERS_URI, request, None, "2")

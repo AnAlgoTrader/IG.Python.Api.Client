@@ -13,7 +13,7 @@ from igRestApiClient.model.enum.Expiry import Expiry
 from igRestApiClient.request.CloseMarketPositionRequest import CloseMarketPositionRequest
 from igRestApiClient.request.OpenMarketPositionRequest import OpenMarketPositionRequest
 from igRestApiClient.response.Accounts import accounts_from_dict
-from igRestApiClient.response.ClosePositionReponse import close_position_response_from_dict
+from igRestApiClient.response.ClosePositionResponse import close_position_response_from_dict
 from igRestApiClient.response.OpenPositionResponse import open_position_response_from_dict
 from igRestApiClient.response.Positions import positions_from_dict
 from igRestApiClient.response.Transactions import transactions_from_dict

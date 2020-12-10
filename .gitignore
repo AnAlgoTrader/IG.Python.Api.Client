@@ -361,3 +361,4 @@ MigrationBackup/
 /Lib/
 igRestApiClient/auth.response.json
 tests/auth.personal.json
+venv
